@@ -7,7 +7,7 @@ use Thunder\Shortcode\ShortcodeFacade;
 use AcornDB\Console\Commands\Seeds\SeedCommand;
 use AcornDB\Console\Commands\Seeds\SeederMakeCommand;
 use AcornDB\Console\Commands\Factories\FactoryMakeCommand;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Acorn database service provider
@@ -21,12 +21,12 @@ class PackageServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind(ShortcodeFacade::class, function () {
             return tap(new ShortcodeFacade(), function (ShortcodeFacade $facade) {
                 $parser_class = $this->app['config']->get('database.shortcode_parser', RegularParser::class);
-                $facade->setParser(new $parser_class);
+                $facade->setParser(new $parser_class());
             });
         });
 
@@ -37,7 +37,7 @@ class PackageServiceProvider extends ServiceProvider
         ]);
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->publishes([
             __DIR__ . '/../../publishes/config/database.php' => $this->app->configPath('database.php'),
@@ -49,7 +49,7 @@ class PackageServiceProvider extends ServiceProvider
     /**
      * Return the App directory.
      */
-    protected function appDirectory()
+    protected function appDirectory(): string
     {
         return $this->app->basePath();
     }
@@ -60,7 +60,7 @@ class PackageServiceProvider extends ServiceProvider
      * @param  string $path
      * @return void
      **/
-    protected function registerFrom(string $path) : void
+    protected function registerFrom(string $path): void
     {
         foreach (glob("$path/*.php") as $filename) {
             require $filename;

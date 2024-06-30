@@ -1,8 +1,9 @@
 <?php
+
 namespace AcornDB\Providers;
 
 use Illuminate\Pagination\Paginator;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Pagination service provider
@@ -16,7 +17,7 @@ class PaginationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         Paginator::viewFactoryResolver(function () {
             return $this->app['view'];
@@ -42,15 +43,14 @@ class PaginationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'pagination');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/resources/views' => $this->app->resourcePath('views/vendor/pagination'),
+                __DIR__ . '/resources/views' => $this->app->resourcePath('views/vendor/pagination'),
             ], 'laravel-pagination');
         }
     }
-
 }

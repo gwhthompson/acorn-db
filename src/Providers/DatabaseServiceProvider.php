@@ -11,7 +11,7 @@ use Illuminate\Contracts\Queue\EntityResolver;
 use Illuminate\Database\Migrations\MigrationRepositoryInterface;
 use Illuminate\Database\ConnectionResolverInterface;
 use AcornDB\Factory as EloquentFactory;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Database service provider
@@ -26,7 +26,7 @@ class DatabaseServiceProvider extends ServiceProvider
      *
      * @return void
      **/
-    public function register() : void
+    public function register(): void
     {
         Model::clearBootedModels();
 
@@ -44,7 +44,7 @@ class DatabaseServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerConnectionServices()
+    protected function registerConnectionServices(): void
     {
         $this->app->bindIf(ConnectionResolverInterface::class, 'db');
 
@@ -72,7 +72,7 @@ class DatabaseServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerEloquentFactory()
+    protected function registerEloquentFactory(): void
     {
         $this->app->singleton(FakerGenerator::class, function ($app) {
             return FakerFactory::create($app['config']->get('app.faker_locale', 'en_US'));
@@ -91,7 +91,7 @@ class DatabaseServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerQueueableEntityResolver()
+    protected function registerQueueableEntityResolver(): void
     {
         $this->app->singleton(EntityResolver::class, function () {
             return new QueueEntityResolver();
@@ -103,7 +103,7 @@ class DatabaseServiceProvider extends ServiceProvider
      *
      * @return void
      **/
-    public function boot() : void
+    public function boot(): void
     {
         Model::setConnectionResolver($this->app['db']);
         Model::setEventDispatcher($this->app['events']);
