@@ -1,11 +1,12 @@
 <?php
+
 namespace AcornDB;
 
 use InvalidArgumentException;
 use Illuminate\Support\Arr;
 use Roots\Acorn\Application as Container;
 use Roots\Acorn\Console\Commands\Command;
-use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
 
 /**
  * Seeder
