@@ -7,7 +7,7 @@ use Corcel\Concerns\Aliases as Corcel;
 /**
  * Attachment
  */
-class Attachment extends Corcel
+class Attachment extends Post
 {
     // --
 }

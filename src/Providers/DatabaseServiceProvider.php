@@ -3,6 +3,7 @@
 namespace AcornDB\Providers;
 
 use Faker\Factory as FakerFactory;
+use Faker\Generator;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\QueueEntityResolver;
@@ -16,12 +17,10 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Database service provider
  *
- * @author  Kelly Mears <kelly@tinypixel.dev>
- * @license MIT
  **/
 class DatabaseServiceProvider extends ServiceProvider
 {
-   /**
+    /**
      * Register primary Eloquent service and associated features
      *
      * @return void
@@ -48,16 +47,10 @@ class DatabaseServiceProvider extends ServiceProvider
     {
         $this->app->bindIf(ConnectionResolverInterface::class, 'db');
 
-        // The connection factory is used to create the actual connection instances on
-        // the database. We will inject the factory into the manager so that it may
-        // make the connections while they are actually needed and not of before.
         $this->app->singleton('db.factory', function ($app) {
             return new ConnectionFactory($app);
         });
 
-        // The database manager is used to resolve various connections, since multiple
-        // connections might be managed. It also implements the connection resolver
-        // interface which may be used by other components requiring connections.
         $this->app->singleton('db', function ($app) {
             return new DatabaseManager($app, $app['db.factory']);
         });
@@ -74,14 +67,14 @@ class DatabaseServiceProvider extends ServiceProvider
      */
     protected function registerEloquentFactory(): void
     {
-        $this->app->singleton(FakerGenerator::class, function ($app) {
+        $this->app->singleton(Generator::class, function ($app) {
             return FakerFactory::create($app['config']->get('app.faker_locale', 'en_US'));
         });
 
         $this->app->singleton('db.eloquentFactory', function ($app) {
             return EloquentFactory::construct(
-                $app->make(FakerGenerator::class),
-                $this->app->databasePath('factories'),
+                $app->make(Generator::class),
+                $this->app->databasePath('factories')
             );
         });
     }
