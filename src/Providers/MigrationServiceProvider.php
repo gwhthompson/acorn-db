@@ -14,7 +14,7 @@ use AcornDB\Console\Commands\Migrate\RefreshCommand as RefreshCommand;
 use AcornDB\Console\Commands\Migrate\ResetCommand as ResetCommand;
 use AcornDB\Console\Commands\Migrate\RollbackCommand as RollbackCommand;
 use AcornDB\Console\Commands\Migrate\StatusCommand as StatusCommand;
-use Roots\Acorn\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Migration service provider
