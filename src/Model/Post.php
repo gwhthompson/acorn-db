@@ -11,7 +11,7 @@ use Corcel\Concerns\Shortcodes;
 use Corcel\Corcel;
 use Corcel\Model;
 use Corcel\Model\Builder\PostBuilder;
-use Corcel\Model\Meta\ThumbnailMeta;
+use AcornDB\Model\Meta\ThumbnailMeta;
 
 class Post extends Model
 {
