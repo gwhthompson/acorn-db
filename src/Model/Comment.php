@@ -6,7 +6,6 @@ use Corcel\Concerns\CustomTimestamps;
 use AcornDB\Concerns\MetaFields;
 use Corcel\Model;
 use Corcel\Model\Builder\CommentBuilder;
-use Corcel\Model\Post;
 
 class Comment extends Model
 {

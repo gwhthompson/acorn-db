@@ -8,7 +8,6 @@ use AcornDB\Concerns\MetaFields;
 use Corcel\Concerns\OrderScopes;
 use Corcel\Model;
 use Corcel\Model\Comment;
-use Corcel\Model\Post;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Relations\HasMany;
