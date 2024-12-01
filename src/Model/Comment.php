@@ -3,7 +3,7 @@
 namespace AcornDB\Model;
 
 use Corcel\Concerns\CustomTimestamps;
-use Corcel\Concerns\MetaFields;
+use AcornDB\Concerns\MetaFields;
 use Corcel\Model;
 use Corcel\Model\Builder\CommentBuilder;
 use Corcel\Model\Post;
