@@ -12,9 +12,9 @@ trait MetaFields
 {
     protected array $builtInClasses = [
         \AcornDB\Model\Post::class =>  \AcornDB\Model\Meta\PostMeta::class,
-        \Corcel\Model\Comment::class => \Corcel\Model\Meta\CommentMeta::class,
-        \Corcel\Model\Term::class => \Corcel\Model\Meta\TermMeta::class,
-        \Corcel\Model\User::class => \Corcel\Model\Meta\UserMeta::class,
+        \AcornDB\Model\Comment::class => \AcornDB\Model\Meta\CommentMeta::class,
+        \AcornDB\Model\Term::class => \AcornDB\Model\Meta\TermMeta::class,
+        \AcornDB\Model\User::class => \AcornDB\Model\Meta\UserMeta::class,
     ];
 
     public function fields(): hasMany
