@@ -105,6 +105,16 @@ class Post extends Model
     ];
 
     /**
+     * Override the default `url` behavior to use `get_permalink()`.
+     *
+     * @return string
+     */
+    public function getUrlAttribute(): string
+    {
+        return get_permalink($this->ID);
+    }
+
+    /**
      * @param array $attributes
      * @param null $connection
      * @return mixed
